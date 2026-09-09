@@ -15,21 +15,21 @@ import AboutPage from './pages/AboutPage';
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-amber-50/80 via-orange-50/40 to-yellow-50/60 text-slate-800 relative overflow-x-hidden selection:bg-brand-orange selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#FFF5F5] text-[#4A4A4A] relative overflow-x-hidden selection:bg-[#E2B4BD] selection:text-white font-sans">
       
-      {/* Dynamic Animated Background Floating Orbs & Meshes */}
+      {/* Dynamic Animated Ambient Background Orbs with #F7D6D0 and #E2B4BD */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Orb 1: Top Left Orange Glowing Blob */}
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-gradient-to-br from-orange-400/25 to-amber-300/30 rounded-full blur-3xl animate-float-slow" />
+        {/* Orb 1: Top Left #E2B4BD Glowing Blob */}
+        <div className="absolute -top-24 -left-24 w-[30rem] h-[30rem] bg-[#E2B4BD]/30 rounded-full blur-3xl animate-float-slow" />
         
-        {/* Orb 2: Top Right Golden Yellow Blob */}
-        <div className="absolute top-1/4 -right-20 w-[30rem] h-[30rem] bg-gradient-to-bl from-yellow-400/20 via-amber-300/20 to-orange-300/15 rounded-full blur-3xl animate-float-reverse" />
+        {/* Orb 2: Top Right #F7D6D0 Blob */}
+        <div className="absolute top-1/4 -right-20 w-[32rem] h-[32rem] bg-[#F7D6D0]/40 rounded-full blur-3xl animate-float-reverse" />
         
         {/* Orb 3: Center Ambient Glow Pulse */}
-        <div className="absolute top-1/2 left-1/3 -translate-x-1/2 w-[36rem] h-[36rem] bg-gradient-to-tr from-rose-300/15 via-orange-400/15 to-amber-300/20 rounded-full blur-3xl animate-pulse-glow" />
+        <div className="absolute top-1/2 left-1/3 -translate-x-1/2 w-[36rem] h-[36rem] bg-[#E2B4BD]/20 rounded-full blur-3xl animate-pulse-glow" />
 
-        {/* Orb 4: Bottom Right Warm Amber Orb */}
-        <div className="absolute -bottom-32 right-1/4 w-[28rem] h-[28rem] bg-gradient-to-tl from-amber-400/20 to-orange-400/20 rounded-full blur-3xl animate-float-slow" />
+        {/* Orb 4: Bottom Right #F7D6D0 Orb */}
+        <div className="absolute -bottom-32 right-1/4 w-[28rem] h-[28rem] bg-[#F7D6D0]/35 rounded-full blur-3xl animate-float-slow" />
       </div>
 
       {/* Foreground Content */}
