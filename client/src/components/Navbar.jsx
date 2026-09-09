@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Compass, Sparkles, MapPin, Globe, Building2, Calendar, CloudSun, Info } from 'lucide-react';
+import { Menu, X, Home, MapPin, Building2, Briefcase, CloudSun, Info, Compass } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   const navLinks = [
-    { name: 'Home', path: '/', icon: Compass },
-    { name: 'Indian Trips', path: '/indian-trips', icon: MapPin },
-    { name: 'International Trips', path: '/international-trips', icon: Globe },
-    { name: 'Destinations', path: '/destinations', icon: Sparkles },
+    { name: 'Home', path: '/', icon: Home },
+    { name: 'Destinations', path: '/destinations', icon: MapPin },
     { name: 'Hotels', path: '/hotels', icon: Building2 },
-    { name: 'Itinerary', path: '/itinerary', icon: Calendar },
+    { name: 'Trips', path: '/indian-trips', icon: Briefcase },
     { name: 'Weather', path: '/weather', icon: CloudSun },
     { name: 'About', path: '/about', icon: Info },
   ];
@@ -24,106 +22,94 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#FFF5F5]/90 backdrop-blur-xl border-b border-[#F7D6D0] shadow-sm shadow-[#E2B4BD]/10 transition-all">
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200/80 shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#E2B4BD] via-[#C7929E] to-[#F7D6D0] flex items-center justify-center text-white text-2xl shadow-md shadow-[#E2B4BD]/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-              ✈️
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#853953] to-[#612D53] flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
+              <Compass className="w-5 h-5" />
             </div>
-            <div>
-              <span className="text-2xl font-black tracking-tight text-[#4A4A4A] group-hover:text-[#C7929E] transition-colors">
-                Traverge
-              </span>
-              <span className="block text-[10px] font-extrabold uppercase tracking-widest text-[#C7929E] -mt-1">
-                Smart Travel Platform
-              </span>
-            </div>
+            <span className="text-xl font-bold tracking-tight text-[#2C2C2C] group-hover:text-[#853953] transition-colors">
+              Traverge
+            </span>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1.5 bg-[#F7D6D0]/40 p-1.5 rounded-2xl border border-[#F7D6D0]/60">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => {
               const active = isActive(link.path);
+              const IconComponent = link.icon;
               return (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`px-3.5 py-2 rounded-xl text-xs font-extrabold transition-all flex items-center gap-1.5 ${
+                  className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
                     active
-                      ? 'bg-[#E2B4BD] text-white shadow-md shadow-[#E2B4BD]/30 scale-[1.03]'
-                      : 'text-[#4A4A4A] hover:text-[#C7929E] hover:bg-white/80'
+                      ? 'text-[#853953] bg-[#853953]/10 font-bold'
+                      : 'text-[#2C2C2C]/80 hover:text-[#853953] hover:bg-gray-100/60'
                   }`}
                 >
-                  <link.icon className={`w-3.5 h-3.5 ${active ? 'text-white' : 'text-[#4A4A4A]/60'}`} />
-                  {link.name}
+                  <IconComponent className={`w-4 h-4 ${active ? 'text-[#853953]' : 'text-[#2C2C2C]/60'}`} />
+                  <span>{link.name}</span>
                 </Link>
               );
             })}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden xl:flex items-center gap-3">
+          {/* Desktop CTA Button */}
+          <div className="hidden md:flex items-center">
             <Link
               to="/itinerary"
-              className="px-6 py-3 rounded-full bg-[#E2B4BD] hover:bg-[#C7929E] text-white font-extrabold text-xs shadow-md shadow-[#E2B4BD]/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+              className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#853953] to-[#612D53] text-white font-semibold text-sm shadow-xs hover:opacity-95 transition-all"
             >
-              <Sparkles className="w-4 h-4 text-white" />
-              Plan My Trip
+              Plan a Trip
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="xl:hidden flex items-center gap-2">
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden flex items-center gap-2">
             <Link
               to="/itinerary"
-              className="px-3.5 py-1.5 rounded-full bg-[#E2B4BD] text-white text-xs font-bold shadow-sm"
+              className="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-[#853953] to-[#612D53] text-white text-xs font-semibold"
             >
-              Plan Trip
+              Plan a Trip
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-[#4A4A4A] hover:bg-[#F7D6D0]/50 hover:text-[#C7929E] transition-colors"
-              aria-label="Toggle Navigation Menu"
+              className="p-2 rounded-lg text-[#2C2C2C] hover:bg-gray-100 transition-colors"
+              aria-label="Toggle navigation"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
+
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-[#FFF5F5]/95 backdrop-blur-2xl border-b border-[#F7D6D0] px-4 pt-2 pb-6 space-y-1 shadow-2xl animate-in slide-in-from-top-2 duration-200">
+        <div className="md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-1 shadow-md">
           {navLinks.map((link) => {
             const active = isActive(link.path);
+            const IconComponent = link.icon;
             return (
               <Link
                 key={link.name}
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold transition-all ${
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium ${
                   active
-                    ? 'bg-[#E2B4BD] text-white shadow-sm'
-                    : 'text-[#4A4A4A] hover:bg-[#F7D6D0]/40 hover:text-[#C7929E]'
+                    ? 'text-[#853953] bg-[#853953]/10 font-semibold'
+                    : 'text-[#2C2C2C] hover:bg-gray-50'
                 }`}
               >
-                <link.icon className={`w-4 h-4 ${active ? 'text-white' : 'text-[#4A4A4A]/60'}`} />
-                {link.name}
+                <IconComponent className={`w-4 h-4 ${active ? 'text-[#853953]' : 'text-[#2C2C2C]/60'}`} />
+                <span>{link.name}</span>
               </Link>
             );
           })}
-          <div className="pt-3">
-            <Link
-              to="/itinerary"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full py-3.5 rounded-2xl bg-[#E2B4BD] text-white font-extrabold text-center block shadow-md shadow-[#E2B4BD]/30"
-            >
-              Plan My Trip ✈️
-            </Link>
-          </div>
         </div>
       )}
     </header>

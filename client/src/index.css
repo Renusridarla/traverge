@@ -4,86 +4,29 @@
 
 @layer utilities {
   .bg-gradient-brand {
-    background: linear-gradient(135deg, #E2B4BD 0%, #F7D6D0 50%, #FFB800 100%);
+    background: linear-gradient(135deg, #853953 0%, #612D53 100%);
   }
-  .bg-gradient-theme {
-    background: linear-gradient(135deg, #E2B4BD 0%, #F7D6D0 100%);
+  .bg-gradient-brand-hover {
+    background: linear-gradient(135deg, #612D53 0%, #4A1E3E 100%);
   }
-  .bg-gradient-dark-brand {
-    background: linear-gradient(135deg, #4A4A4A 0%, #2A2A2A 100%);
-  }
-  .bg-glass {
-    background: rgba(255, 245, 245, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(247, 214, 208, 0.6);
-  }
-  .bg-glass-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 245, 245, 0.8) 100%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(226, 180, 189, 0.3);
-  }
-  .text-gradient-rose {
-    background: linear-gradient(135deg, #C7929E 0%, #E2B4BD 50%, #4A4A4A 100%);
+  .text-gradient-brand {
+    background: linear-gradient(135deg, #853953 0%, #612D53 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 }
 
-/* Custom Animated Ambient Background Effects */
-@keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg) scale(1);
-  }
-  50% {
-    transform: translateY(-18px) rotate(3deg) scale(1.05);
-  }
-}
-
-@keyframes floatReverse {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg) scale(1);
-  }
-  50% {
-    transform: translateY(18px) rotate(-3deg) scale(0.96);
-  }
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.45;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.75;
-    transform: scale(1.15);
-  }
-}
-
-.animate-float-slow {
-  animation: floatSlow 8s ease-in-out infinite;
-}
-
-.animate-float-reverse {
-  animation: floatReverse 10s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 6s ease-in-out infinite;
-}
-
-/* Custom scrollbar matching #E2B4BD and #F7D6D0 */
+/* Custom minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FFF5F5;
+  background: #F3F4F4;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #E2B4BD 0%, #F7D6D0 100%);
-  border-radius: 4px;
+  background: #853953;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C7929E;
+  background: #612D53;
 }

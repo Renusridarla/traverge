@@ -1,37 +1,130 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import HeroSection from '../components/HeroSection';
 import TripPlanner from '../components/TripPlanner';
-import WhyTraverge from '../components/WhyTraverge';
-import HowItWorks from '../components/HowItWorks';
+import SmartPlanningFeatures from '../components/SmartPlanningFeatures';
 import DestinationCard from '../components/DestinationCard';
 import HotelCard from '../components/HotelCard';
-import WeatherWidget from '../components/WeatherWidget';
-import { Sparkles, ArrowRight, MapPin, Globe, Building2, Sun, Star } from 'lucide-react';
+import { ArrowRight, MapPin, Building2, ArrowUpRight } from 'lucide-react';
 
 export default function HomePage() {
-  const navigate = useNavigate();
-
-  const [indianDestinations, setIndianDestinations] = useState([]);
-  const [internationalDestinations, setInternationalDestinations] = useState([]);
+  const [popularDestinations, setPopularDestinations] = useState([]);
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const fallbackDestinations = [
+    {
+      _id: 'ind-1',
+      name: 'Manali',
+      state: 'Himachal Pradesh',
+      country: 'India',
+      type: 'indian',
+      category: 'Hill Station',
+      estimatedBudgetINR: 22000,
+      recommendedDays: 4,
+      bestTime: 'Oct - Jun',
+      shortDescription: 'High-altitude mountain resort with snow adventures in Solang Valley.',
+      image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80',
+      rating: 4.8
+    },
+    {
+      _id: 'ind-2',
+      name: 'Goa',
+      state: 'Goa',
+      country: 'India',
+      type: 'indian',
+      category: 'Beach & Coastal',
+      estimatedBudgetINR: 25000,
+      recommendedDays: 4,
+      bestTime: 'Nov - Feb',
+      shortDescription: "India's premier party and beach destination with Fort Aguada sunsets.",
+      image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80',
+      rating: 4.8
+    },
+    {
+      _id: 'int-1',
+      name: 'Maldives',
+      state: 'Malé Atoll',
+      country: 'Maldives',
+      type: 'international',
+      category: 'Resort',
+      estimatedBudgetINR: 85000,
+      recommendedDays: 4,
+      bestTime: 'Nov - Apr',
+      shortDescription: 'Luxury overwater villas, private reefs & crystal turquoise lagoons.',
+      image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80',
+      rating: 4.9
+    },
+    {
+      _id: 'int-2',
+      name: 'Bali',
+      state: 'Bali',
+      country: 'Indonesia',
+      type: 'international',
+      category: 'Nature',
+      estimatedBudgetINR: 50000,
+      recommendedDays: 5,
+      bestTime: 'Apr - Oct',
+      shortDescription: 'Emerald rice terraces, spiritual water temples & beach clubs.',
+      image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80',
+      rating: 4.9
+    }
+  ];
+
+  const fallbackHotels = [
+    {
+      _id: 'hot-1',
+      name: 'Taj Fort Aguada Resort & Spa',
+      destination: 'Goa',
+      location: 'Sinquerim Beach, Candolim',
+      pricePerNight: 16500,
+      rating: 4.8,
+      reviewsCount: 340,
+      amenities: ['Ocean View Pool', 'Private Beach', 'Ayurveda Spa', 'Fine Dining'],
+      roomType: 'Sea View Deluxe Cottage',
+      category: 'Luxury',
+      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
+      distanceFromCenter: '0.2 km from beach'
+    },
+    {
+      _id: 'hot-2',
+      name: 'The Grand Dragon & Spa Manali',
+      destination: 'Manali',
+      location: 'Log Huts Area, Old Manali',
+      pricePerNight: 9500,
+      rating: 4.7,
+      reviewsCount: 290,
+      amenities: ['Mountain View Balcony', 'Heated Pool', 'Fireside Lounge', 'Spa'],
+      roomType: 'Luxury Snow View Suite',
+      category: '5-Star',
+      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80',
+      distanceFromCenter: '1.2 km from Mall Road'
+    }
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [indRes, intRes, hotelRes] = await Promise.all([
-          axios.get('/api/destinations?type=indian&popular=true'),
-          axios.get('/api/destinations?type=international&popular=true'),
+        const [destRes, hotelRes] = await Promise.all([
+          axios.get('/api/destinations?popular=true'),
           axios.get('/api/hotels?sort=rating')
         ]);
 
-        if (indRes.data?.success) setIndianDestinations(indRes.data.data.slice(0, 4));
-        if (intRes.data?.success) setInternationalDestinations(intRes.data.data.slice(0, 4));
-        if (hotelRes.data?.success) setHotels(hotelRes.data.data.slice(0, 3));
+        if (destRes.data?.success && destRes.data.data.length > 0) {
+          setPopularDestinations(destRes.data.data.slice(0, 4));
+        } else {
+          setPopularDestinations(fallbackDestinations);
+        }
+
+        if (hotelRes.data?.success && hotelRes.data.data.length > 0) {
+          setHotels(hotelRes.data.data.slice(0, 2));
+        } else {
+          setHotels(fallbackHotels);
+        }
       } catch (err) {
-        console.error('Failed to fetch home page data:', err);
+        setPopularDestinations(fallbackDestinations);
+        setHotels(fallbackHotels);
       } finally {
         setLoading(false);
       }
@@ -40,189 +133,89 @@ export default function HomePage() {
     fetchData();
   }, []);
 
-  const testimonials = [
-    {
-      name: 'Aarav Sharma',
-      role: 'Software Engineer',
-      location: 'Bengaluru',
-      comment: 'Traverge planned our 4-day Manali trip in seconds! The weather-based activity suggestions and visual budget breakdown were spot on.',
-      avatar: '👨‍💻',
-      rating: 5
-    },
-    {
-      name: 'Priya Nair',
-      role: 'UI Designer',
-      location: 'Kochi',
-      comment: 'I love how easy it is to switch between Indian destinations and international trips like Bali. The hotel recommendations are super clean!',
-      avatar: '👩‍🎨',
-      rating: 5
-    },
-    {
-      name: 'Rohan Mehta',
-      role: 'Product Manager',
-      location: 'Mumbai',
-      comment: 'The day-wise itinerary generator saved me hours of planning for our Maldives getaway. A portfolio project that feels like a real tech startup!',
-      avatar: '👨‍💼',
-      rating: 5
-    }
-  ];
-
   return (
-    <div className="space-y-16 pb-12">
+    <div className="space-y-16 pb-16">
       
       {/* 1. Hero Section */}
       <HeroSection />
 
-      {/* 2. Trip Planner Form Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 lg:-mt-20 relative z-20">
+      {/* 2. Trip Planner Interactive Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
         <TripPlanner />
-      </div>
+      </section>
 
-      {/* 3. Why Traverge? Section */}
-      <WhyTraverge />
-
-      {/* 4. Popular Indian Destinations Section */}
+      {/* 3. Popular Destinations Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-brand-orange text-xs font-extrabold uppercase tracking-wider mb-2">
-              <MapPin className="w-3.5 h-3.5" />
-              Explore Incredible India
-            </div>
-            <h2 className="text-3xl font-extrabold text-slate-900">Popular Indian Trips</h2>
-            <p className="text-sm font-medium text-slate-600">Top tourist destinations across Indian states and union territories.</p>
+            <span className="text-xs font-bold text-[#853953] uppercase tracking-wider block">
+              Featured Locations
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#2C2C2C]">Popular Destinations</h2>
+            <p className="text-sm font-normal text-[#2C2C2C]/75">Discover top domestic and international travel spots.</p>
           </div>
 
           <Link
-            to="/indian-trips"
-            className="px-5 py-2.5 rounded-xl bg-orange-50 text-brand-orange hover:bg-brand-orange hover:text-white font-bold text-xs transition-all flex items-center gap-2 self-start sm:self-auto border border-orange-200"
+            to="/destinations"
+            className="px-4 py-2 rounded-lg bg-white text-[#853953] border border-gray-300 hover:border-[#853953] font-semibold text-xs transition-all flex items-center gap-1.5 self-start sm:self-auto"
           >
-            <span>View All 36 States & UTs</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>Explore All Destinations</span>
+            <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {indianDestinations.map((dest) => (
+          {popularDestinations.map((dest) => (
             <DestinationCard key={dest._id || dest.name} destination={dest} />
           ))}
         </div>
       </section>
 
-      {/* 5. Popular International Destinations Section */}
+      {/* 4. Smart Travel Planning Capabilities */}
+      <SmartPlanningFeatures />
+
+      {/* 5. Popular Hotels Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold uppercase tracking-wider mb-2">
-              <Globe className="w-3.5 h-3.5" />
-              Global Adventures
-            </div>
-            <h2 className="text-3xl font-extrabold text-slate-900">Popular International Trips</h2>
-            <p className="text-sm font-medium text-slate-600">Maldives, Bangkok, Bali, Paris, Switzerland, Japan, Dubai & more.</p>
-          </div>
-
-          <Link
-            to="/international-trips"
-            className="px-5 py-2.5 rounded-xl bg-amber-50 text-amber-800 hover:bg-amber-500 hover:text-white font-bold text-xs transition-all flex items-center gap-2 self-start sm:self-auto border border-amber-200"
-          >
-            <span>Explore All International Countries</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {internationalDestinations.map((dest) => (
-            <DestinationCard key={dest._id || dest.name} destination={dest} />
-          ))}
-        </div>
-      </section>
-
-      {/* 6. Weather-Based Travel Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <WeatherWidget initialCity="Manali" />
-      </section>
-
-      {/* 7. Recommended Hotels Preview */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-xs font-extrabold uppercase tracking-wider mb-2">
-              <Building2 className="w-3.5 h-3.5" />
-              Curated Accommodations
-            </div>
-            <h2 className="text-3xl font-extrabold text-slate-900">Top Recommended Hotels & Stays</h2>
-            <p className="text-sm font-medium text-slate-600">Sample luxury resorts, 5-star hotels, and budget stays with INR rates.</p>
+            <span className="text-xs font-bold text-[#853953] uppercase tracking-wider block">
+              Accommodations
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#2C2C2C]">Popular Hotels</h2>
+            <p className="text-sm font-normal text-[#2C2C2C]/75">Curated selection of stays with estimated rates.</p>
           </div>
 
           <Link
             to="/hotels"
-            className="px-5 py-2.5 rounded-xl bg-yellow-50 text-amber-800 hover:bg-brand-golden hover:text-white font-bold text-xs transition-all flex items-center gap-2 self-start sm:self-auto border border-yellow-200"
+            className="px-4 py-2 rounded-lg bg-white text-[#853953] border border-gray-300 hover:border-[#853953] font-semibold text-xs transition-all flex items-center gap-1.5 self-start sm:self-auto"
           >
-            <span>Search All Hotels</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>View All Hotels</span>
+            <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {hotels.map((hotel) => (
             <HotelCard key={hotel._id || hotel.name} hotel={hotel} />
           ))}
         </div>
       </section>
 
-      {/* 8. How It Works Section */}
-      <HowItWorks />
-
-      {/* 9. Testimonials Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-extrabold uppercase tracking-wider text-brand-orange">
-            Loved By Travelers
-          </span>
-          <h2 className="text-3xl font-extrabold text-slate-900">What Our Users Say</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-3xl p-6 shadow-sm border border-orange-100 space-y-4 hover:shadow-card-hover transition-all"
-            >
-              <div className="flex items-center gap-1 text-amber-400">
-                {[...Array(t.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400" />
-                ))}
-              </div>
-              <p className="text-xs text-slate-600 font-medium italic leading-relaxed">
-                "{t.comment}"
-              </p>
-              <div className="flex items-center gap-3 pt-3 border-t border-slate-100">
-                <span className="text-3xl">{t.avatar}</span>
-                <div>
-                  <h4 className="text-sm font-extrabold text-slate-900">{t.name}</h4>
-                  <p className="text-[11px] text-slate-500 font-semibold">{t.role} • {t.location}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 10. Call to Action Banner */}
+      {/* 6. Final CTA Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-r from-brand-orange via-amber-500 to-brand-golden rounded-3xl p-8 lg:p-12 text-white text-center space-y-6 shadow-glow relative overflow-hidden">
-          <div className="max-w-2xl mx-auto space-y-3 relative z-10">
-            <h2 className="text-3xl sm:text-4xl font-extrabold">Ready for Your Next Unforgettable Journey?</h2>
-            <p className="text-sm font-medium text-yellow-100">
-              Generate a full day-wise itinerary, check live destination weather, and find ideal hotel options in under a minute.
+        <div className="bg-[#2C2C2C] rounded-2xl p-8 lg:p-12 text-white text-center space-y-6 shadow-card">
+          <div className="max-w-xl mx-auto space-y-3">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F3F4F4]">Ready to plan your next trip?</h2>
+            <p className="text-sm font-normal text-[#F3F4F4]/80">
+              Create a personalized day-wise itinerary tailored to your budget and preferences.
             </p>
-            <div className="pt-4 flex justify-center">
+            <div className="pt-2 flex justify-center">
               <Link
                 to="/itinerary"
-                className="px-8 py-4 rounded-2xl bg-white text-brand-orange font-extrabold text-base shadow-lg hover:bg-yellow-50 hover:scale-105 transition-all flex items-center gap-2"
+                className="px-7 py-3 rounded-lg bg-gradient-to-r from-[#853953] to-[#612D53] text-white font-semibold text-sm shadow-xs hover:opacity-95 transition-all flex items-center gap-2"
               >
-                <Sparkles className="w-5 h-5 text-brand-golden" />
-                Create My Itinerary
+                <span>Plan a Trip</span>
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
