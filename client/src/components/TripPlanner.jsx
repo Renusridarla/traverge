@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, IndianRupee, Calendar, Users, Sparkles, Check, Compass } from 'lucide-react';
+import { Search, IndianRupee, Calendar, Users, Sparkles, Check, Compass, Sliders } from 'lucide-react';
 
 export default function TripPlanner({ onPlanSubmit }) {
   const navigate = useNavigate();
@@ -75,14 +75,18 @@ export default function TripPlanner({ onPlanSubmit }) {
   };
 
   return (
-    <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-glow border border-orange-100 relative">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 rounded-2xl bg-orange-100 text-brand-orange flex items-center justify-center font-bold">
-          <Compass className="w-5 h-5" />
+    <div className="bg-white/85 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl shadow-orange-500/10 border border-white/90 relative overflow-hidden">
+      
+      {/* Top Accent Gradient Border */}
+      <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-brand-orange via-amber-500 to-brand-golden" />
+
+      <div className="flex items-center gap-3.5 mb-8">
+        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-orange to-amber-500 text-white flex items-center justify-center font-extrabold shadow-md">
+          <Sliders className="w-6 h-6" />
         </div>
         <div>
-          <h2 className="text-2xl font-extrabold text-slate-900">Plan Your Custom Trip</h2>
-          <p className="text-xs font-semibold text-slate-500">Fill in details for dynamic weather & itinerary generator</p>
+          <h2 className="text-2xl font-black text-slate-900">Plan Your Custom Trip</h2>
+          <p className="text-xs font-bold text-slate-500">Specify your budget, dates, and preferences for AI itinerary generation</p>
         </div>
       </div>
 
@@ -100,7 +104,7 @@ export default function TripPlanner({ onPlanSubmit }) {
               <select
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
-                className="w-full px-4 py-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-900 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange/50 focus:bg-white transition-all appearance-none cursor-pointer"
+                className="w-full px-4 py-3.5 rounded-2xl bg-slate-50/90 border border-slate-200/80 text-slate-900 font-extrabold text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition-all appearance-none cursor-pointer shadow-xs"
               >
                 <optgroup label="🇮🇳 Popular Indian Destinations">
                   <option value="Manali">Manali (Himachal Pradesh)</option>
@@ -152,7 +156,7 @@ export default function TripPlanner({ onPlanSubmit }) {
             <select
               value={budget}
               onChange={(e) => setBudget(e.target.value)}
-              className="w-full px-4 py-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-900 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange/50 focus:bg-white transition-all cursor-pointer"
+              className="w-full px-4 py-3.5 rounded-2xl bg-slate-50/90 border border-slate-200/80 text-slate-900 font-extrabold text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition-all cursor-pointer shadow-xs"
             >
               {budgetOptions.map((b) => (
                 <option key={b.value} value={b.value}>
@@ -173,13 +177,13 @@ export default function TripPlanner({ onPlanSubmit }) {
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full px-3 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-slate-900 font-bold text-xs focus:outline-none focus:ring-2 focus:ring-brand-orange/50"
+                className="w-full px-3 py-3 rounded-2xl bg-slate-50/90 border border-slate-200/80 text-slate-900 font-bold text-xs focus:outline-none focus:ring-2 focus:ring-brand-orange shadow-xs"
               />
               <input
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full px-3 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-slate-900 font-bold text-xs focus:outline-none focus:ring-2 focus:ring-brand-orange/50"
+                className="w-full px-3 py-3 rounded-2xl bg-slate-50/90 border border-slate-200/80 text-slate-900 font-bold text-xs focus:outline-none focus:ring-2 focus:ring-brand-orange shadow-xs"
               />
             </div>
           </div>
@@ -190,9 +194,9 @@ export default function TripPlanner({ onPlanSubmit }) {
               <Users className="w-4 h-4 text-amber-500" />
               Travelers Count
             </label>
-            <div className="flex items-center gap-3 bg-slate-50 p-2.5 rounded-2xl border border-slate-200 justify-between">
+            <div className="flex items-center gap-3 bg-slate-50/90 p-2.5 rounded-2xl border border-slate-200/80 justify-between shadow-xs">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-slate-600">Adults:</span>
+                <span className="text-xs font-extrabold text-slate-600">Adults:</span>
                 <input
                   type="number"
                   min="1"
@@ -203,7 +207,7 @@ export default function TripPlanner({ onPlanSubmit }) {
                 />
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-slate-600">Kids:</span>
+                <span className="text-xs font-extrabold text-slate-600">Kids:</span>
                 <input
                   type="number"
                   min="0"
@@ -231,10 +235,10 @@ export default function TripPlanner({ onPlanSubmit }) {
                   type="button"
                   key={style.name}
                   onClick={() => toggleStyle(style.name)}
-                  className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  className={`px-4 py-2 rounded-xl text-xs font-extrabold transition-all flex items-center gap-2 ${
                     selected
-                      ? 'bg-gradient-to-r from-brand-orange to-amber-500 text-white shadow-sm scale-[1.03]'
-                      : 'bg-slate-100 text-slate-700 hover:bg-orange-50 hover:text-brand-orange'
+                      ? 'bg-gradient-to-r from-brand-orange via-amber-500 to-yellow-500 text-white shadow-md scale-[1.04]'
+                      : 'bg-slate-100/90 text-slate-700 hover:bg-orange-50 hover:text-brand-orange border border-slate-200/60'
                   }`}
                 >
                   <span>{style.icon}</span>
@@ -250,10 +254,10 @@ export default function TripPlanner({ onPlanSubmit }) {
         <div className="pt-4 flex justify-end">
           <button
             type="submit"
-            className="w-full sm:w-auto px-10 py-4 rounded-2xl bg-gradient-to-r from-brand-orange via-amber-500 to-brand-golden text-white font-extrabold text-base shadow-glow hover:shadow-glow-yellow hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-10 py-4 rounded-2xl bg-gradient-to-r from-brand-orange via-amber-500 to-brand-golden text-white font-black text-base shadow-glow hover:shadow-glow-yellow hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2.5"
           >
-            <Sparkles className="w-5 h-5" />
-            Plan My Trip
+            <Sparkles className="w-5 h-5 animate-pulse" />
+            Plan My Trip Now
           </button>
         </div>
 

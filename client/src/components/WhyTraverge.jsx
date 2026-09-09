@@ -1,5 +1,5 @@
 import React from 'react';
-import { IndianRupee, Sun, Building2, Calendar, Globe, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 export default function WhyTraverge() {
   const features = [
@@ -36,19 +36,19 @@ export default function WhyTraverge() {
   ];
 
   return (
-    <section className="py-16 bg-white border-y border-orange-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-brand-orange text-xs font-extrabold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5" />
-            Platform Highlights
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-14">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-xl border border-orange-200/80 shadow-md text-brand-orange text-xs font-black uppercase tracking-wider">
+            <Sparkles className="w-4 h-4 text-brand-golden" />
+            <span>Platform Highlights</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
             Why Choose Traverge?
           </h2>
-          <p className="text-sm font-medium text-slate-600">
+          <p className="text-sm sm:text-base font-semibold text-slate-600">
             Everything you need for seamless destination discovery, stay recommendations, live weather, and dynamic day-wise itineraries.
           </p>
         </div>
@@ -58,14 +58,14 @@ export default function WhyTraverge() {
           {features.map((feat, idx) => (
             <div
               key={idx}
-              className="bg-brand-cream/60 rounded-3xl p-6 border border-orange-100/80 hover:border-brand-orange hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              className="bg-white/85 backdrop-blur-2xl rounded-3xl p-6 border border-white/90 hover:border-brand-orange/60 shadow-lg shadow-orange-500/5 hover:shadow-2xl hover:shadow-orange-500/15 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group"
             >
               <div className="space-y-4">
-                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${feat.gradient} text-white text-2xl flex items-center justify-center shadow-md`}>
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feat.gradient} text-white text-3xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                   {feat.icon}
                 </div>
-                <h3 className="text-lg font-extrabold text-slate-900">{feat.title}</h3>
-                <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                <h3 className="text-lg font-black text-slate-900 group-hover:text-brand-orange transition-colors">{feat.title}</h3>
+                <p className="text-xs text-slate-600 font-semibold leading-relaxed">
                   {feat.description}
                 </p>
               </div>

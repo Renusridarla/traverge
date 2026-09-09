@@ -24,40 +24,40 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-orange-100 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-orange-200/50 shadow-md shadow-orange-500/5 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-brand-orange to-brand-golden flex items-center justify-center text-white text-2xl shadow-glow group-hover:scale-105 transition-transform">
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-brand-orange via-amber-500 to-brand-golden flex items-center justify-center text-white text-2xl shadow-glow group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
               ✈️
             </div>
             <div>
-              <span className="text-2xl font-extrabold tracking-tight text-slate-900 group-hover:text-brand-orange transition-colors">
+              <span className="text-2xl font-black tracking-tight text-slate-900 group-hover:text-brand-orange transition-colors">
                 Traverge
               </span>
-              <span className="block text-[10px] font-bold uppercase tracking-widest text-brand-orange -mt-1">
+              <span className="block text-[10px] font-extrabold uppercase tracking-widest bg-gradient-to-r from-brand-orange to-amber-500 bg-clip-text text-transparent -mt-1">
                 Smart Travel Platform
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1">
+          <nav className="hidden xl:flex items-center gap-1.5 bg-slate-100/70 p-1.5 rounded-2xl border border-white/60 shadow-inner">
             {navLinks.map((link) => {
               const active = isActive(link.path);
               return (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`px-3 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 ${
+                  className={`px-3 py-2 rounded-xl text-xs font-extrabold transition-all flex items-center gap-1.5 ${
                     active
-                      ? 'bg-gradient-to-r from-orange-500/10 to-amber-500/10 text-brand-orange font-bold border border-orange-200/60'
-                      : 'text-slate-600 hover:text-brand-orange hover:bg-orange-50/50'
+                      ? 'bg-gradient-to-r from-brand-orange to-amber-500 text-white shadow-glow scale-[1.03]'
+                      : 'text-slate-700 hover:text-brand-orange hover:bg-white/80'
                   }`}
                 >
-                  <link.icon className={`w-4 h-4 ${active ? 'text-brand-orange' : 'text-slate-400'}`} />
+                  <link.icon className={`w-3.5 h-3.5 ${active ? 'text-white' : 'text-slate-400'}`} />
                   {link.name}
                 </Link>
               );
@@ -68,9 +68,9 @@ export default function Navbar() {
           <div className="hidden xl:flex items-center gap-3">
             <Link
               to="/itinerary"
-              className="px-5 py-2.5 rounded-full bg-gradient-to-r from-brand-orange via-amber-500 to-brand-golden text-white font-bold text-sm shadow-glow hover:shadow-glow-yellow hover:scale-[1.02] transition-all flex items-center gap-2"
+              className="px-6 py-3 rounded-full bg-gradient-to-r from-brand-orange via-amber-500 to-brand-golden text-white font-extrabold text-xs shadow-glow hover:shadow-glow-yellow hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
             >
-              <Sparkles className="w-4 h-4 animate-pulse" />
+              <Sparkles className="w-4 h-4 animate-spin-slow" />
               Plan My Trip
             </Link>
           </div>
@@ -79,13 +79,13 @@ export default function Navbar() {
           <div className="xl:hidden flex items-center gap-2">
             <Link
               to="/itinerary"
-              className="px-3.5 py-1.5 rounded-full bg-brand-orange text-white text-xs font-bold shadow-sm"
+              className="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-brand-orange to-amber-500 text-white text-xs font-bold shadow-sm"
             >
               Plan Trip
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-slate-600 hover:bg-orange-50 hover:text-brand-orange transition-colors"
+              className="p-2 rounded-xl text-slate-700 hover:bg-orange-50 hover:text-brand-orange transition-colors"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -96,7 +96,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-white border-b border-orange-100 px-4 pt-2 pb-6 space-y-1 shadow-lg animate-in slide-in-from-top-2 duration-200">
+        <div className="xl:hidden bg-white/95 backdrop-blur-2xl border-b border-orange-100 px-4 pt-2 pb-6 space-y-1 shadow-2xl animate-in slide-in-from-top-2 duration-200">
           {navLinks.map((link) => {
             const active = isActive(link.path);
             return (
@@ -104,13 +104,13 @@ export default function Navbar() {
                 key={link.name}
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
+                className={`flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold transition-all ${
                   active
-                    ? 'bg-orange-50 text-brand-orange border border-orange-200'
-                    : 'text-slate-700 hover:bg-orange-50/50 hover:text-brand-orange'
+                    ? 'bg-gradient-to-r from-brand-orange to-amber-500 text-white shadow-sm'
+                    : 'text-slate-700 hover:bg-orange-50 hover:text-brand-orange'
                 }`}
               >
-                <link.icon className={`w-5 h-5 ${active ? 'text-brand-orange' : 'text-slate-400'}`} />
+                <link.icon className={`w-4 h-4 ${active ? 'text-white' : 'text-slate-400'}`} />
                 {link.name}
               </Link>
             );
@@ -119,7 +119,7 @@ export default function Navbar() {
             <Link
               to="/itinerary"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-brand-orange to-brand-golden text-white font-bold text-center block shadow-glow"
+              className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-brand-orange via-amber-500 to-brand-golden text-white font-extrabold text-center block shadow-glow"
             >
               Plan My Trip ✈️
             </Link>
