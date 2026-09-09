@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-gradient-brand {
+    background: linear-gradient(135deg, #FF5722 0%, #FFB300 100%);
+  }
+  .bg-gradient-gold {
+    background: linear-gradient(135deg, #FFC107 0%, #FFFBF5 100%);
+  }
+  .text-gradient-orange {
+    background: linear-gradient(135deg, #FF5722 0%, #FF9800 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FFFBF5;
+}
+::-webkit-scrollbar-thumb {
+  background: #FFB300;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF5722;
+}
