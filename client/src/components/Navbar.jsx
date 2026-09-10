@@ -22,7 +22,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200/80 shadow-xs">
+    <header className="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-200/60 shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
@@ -37,7 +37,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1 bg-gray-100/70 p-1.5 rounded-xl border border-gray-200/50">
             {navLinks.map((link) => {
               const active = isActive(link.path);
               const IconComponent = link.icon;
@@ -47,11 +47,11 @@ export default function Navbar() {
                   to={link.path}
                   className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
                     active
-                      ? 'text-[#853953] bg-[#853953]/10 font-bold'
-                      : 'text-[#2C2C2C]/80 hover:text-[#853953] hover:bg-gray-100/60'
+                      ? 'text-white bg-gradient-to-r from-[#853953] to-[#612D53] shadow-xs font-bold'
+                      : 'text-[#2C2C2C]/80 hover:text-[#853953] hover:bg-white/80'
                   }`}
                 >
-                  <IconComponent className={`w-4 h-4 ${active ? 'text-[#853953]' : 'text-[#2C2C2C]/60'}`} />
+                  <IconComponent className={`w-4 h-4 ${active ? 'text-white' : 'text-[#2C2C2C]/60'}`} />
                   <span>{link.name}</span>
                 </Link>
               );
@@ -90,7 +90,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-1 shadow-md">
+        <div className="md:hidden bg-white/95 backdrop-blur-2xl border-b border-gray-200 px-4 pt-2 pb-6 space-y-1 shadow-md">
           {navLinks.map((link) => {
             const active = isActive(link.path);
             const IconComponent = link.icon;
@@ -101,11 +101,11 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium ${
                   active
-                    ? 'text-[#853953] bg-[#853953]/10 font-semibold'
+                    ? 'text-white bg-gradient-to-r from-[#853953] to-[#612D53] font-semibold'
                     : 'text-[#2C2C2C] hover:bg-gray-50'
                 }`}
               >
-                <IconComponent className={`w-4 h-4 ${active ? 'text-[#853953]' : 'text-[#2C2C2C]/60'}`} />
+                <IconComponent className={`w-4 h-4 ${active ? 'text-white' : 'text-[#2C2C2C]/60'}`} />
                 <span>{link.name}</span>
               </Link>
             );
