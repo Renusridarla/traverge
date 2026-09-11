@@ -57,36 +57,36 @@ export default function InternationalTripsPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       
       {/* Header Banner */}
-      <div className="bg-[#2C2C2C] rounded-2xl p-8 text-white shadow-card space-y-2">
-        <span className="text-xs font-bold text-[#E2B4BD] uppercase tracking-wider block">
+      <div className="interactive-card bg-[#131920] rounded-3xl p-8 text-white shadow-card-dark border border-[#232E3C] space-y-2">
+        <span className="text-xs font-extrabold text-[#FFF449] uppercase tracking-wider block">
           Worldwide Destinations
         </span>
-        <h1 className="text-3xl font-extrabold">Popular International Trips</h1>
-        <p className="text-xs font-normal text-gray-300 max-w-2xl">
+        <h1 className="text-3xl font-black">Popular International Trips</h1>
+        <p className="text-xs font-normal text-gray-400 max-w-2xl leading-relaxed">
           Explore top international countries including Maldives, Thailand, Bali, Singapore, Dubai, Paris, Switzerland, Japan, and USA with estimated prices in INR.
         </p>
       </div>
 
       {/* Filter Control Bar */}
-      <div className="bg-white rounded-2xl p-6 shadow-xs border border-gray-200/80 space-y-6">
+      <div className="interactive-card bg-[#131920] rounded-2xl p-6 shadow-card-dark border border-[#232E3C] space-y-6">
         
         {/* Search Bar */}
         <form onSubmit={handleSearchSubmit} className="flex flex-col sm:flex-row items-center gap-4">
           <div className="relative flex-1 w-full">
-            <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#FFF449] absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search country or city e.g. Maldives, Paris, Tokyo..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-[#F3F4F4] border border-gray-300 text-[#2C2C2C] font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-[#853953]"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#0B0F14] border border-[#232E3C] text-white font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-[#FFF449] transition-all"
             />
           </div>
 
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <button
               type="submit"
-              className="flex-1 sm:flex-none px-5 py-2.5 rounded-lg bg-[#853953] text-white font-semibold text-xs shadow-xs hover:opacity-90 transition-all"
+              className="flex-1 sm:flex-none px-6 py-2.5 rounded-xl bg-gradient-brand hover:bg-gradient-brand-hover text-[#0B0F14] font-extrabold text-xs shadow-glow-yellow hover:scale-105 transition-all"
             >
               Search
             </button>
@@ -94,27 +94,27 @@ export default function InternationalTripsPage() {
             <button
               type="button"
               onClick={handleResetFilters}
-              className="px-3.5 py-2.5 rounded-lg bg-[#F3F4F4] text-[#2C2C2C] font-semibold text-xs hover:bg-gray-200 transition-all flex items-center gap-1 border border-gray-300"
+              className="px-4 py-2.5 rounded-xl bg-[#1A222C] text-white font-bold text-xs hover:bg-[#232E3C] transition-all flex items-center gap-1.5 border border-[#232E3C]"
             >
-              <RefreshCw className="w-3.5 h-3.5 text-[#853953]" />
+              <RefreshCw className="w-3.5 h-3.5 text-[#B2D959]" />
               Reset
             </button>
           </div>
         </form>
 
         {/* Dropdowns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 border-t border-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-[#232E3C]">
           
           {/* Country */}
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-[#2C2C2C] flex items-center gap-1">
-              <Globe className="w-3.5 h-3.5 text-[#853953]" />
+            <label className="text-xs font-bold text-gray-300 flex items-center gap-1.5">
+              <Globe className="w-3.5 h-3.5 text-[#B2D959]" />
               Select Country
             </label>
             <select
               value={selectedCountry}
               onChange={(e) => setSelectedCountry(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg bg-[#F3F4F4] border border-gray-300 text-[#2C2C2C] font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-[#853953] cursor-pointer"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-[#0B0F14] border border-[#232E3C] text-white font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-[#FFF449] cursor-pointer"
             >
               {countryList.map((c) => (
                 <option key={c} value={c}>
@@ -126,14 +126,14 @@ export default function InternationalTripsPage() {
 
           {/* Category */}
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-[#2C2C2C] flex items-center gap-1">
-              <Filter className="w-3.5 h-3.5 text-[#853953]" />
+            <label className="text-xs font-bold text-gray-300 flex items-center gap-1.5">
+              <Filter className="w-3.5 h-3.5 text-[#7EC151]" />
               Category Style
             </label>
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg bg-[#F3F4F4] border border-gray-300 text-[#2C2C2C] font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-[#853953] cursor-pointer"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-[#0B0F14] border border-[#232E3C] text-white font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-[#FFF449] cursor-pointer"
             >
               {categories.map((cat) => (
                 <option key={cat} value={cat}>
@@ -149,22 +149,22 @@ export default function InternationalTripsPage() {
 
       {/* Grid Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-bold text-[#2C2C2C]">
+        <h2 className="text-lg font-bold text-white">
           Showing {destinations.length} International Destination(s)
         </h2>
       </div>
 
       {/* Grid Content */}
       {loading ? (
-        <div className="py-16 text-center text-xs text-[#2C2C2C]/60 font-medium">
+        <div className="py-16 text-center text-xs text-gray-400 font-medium">
           Loading international travel destinations...
         </div>
       ) : destinations.length === 0 ? (
-        <div className="bg-white rounded-2xl p-12 text-center text-xs text-[#2C2C2C]/70 font-medium space-y-3 border border-gray-200">
-          <p className="font-bold text-[#2C2C2C]">No international destinations found matching your filters.</p>
+        <div className="bg-[#131920] rounded-2xl p-12 text-center text-xs text-gray-400 font-medium space-y-4 border border-[#232E3C]">
+          <p className="font-bold text-white text-sm">No international destinations found matching your filters.</p>
           <button
             onClick={handleResetFilters}
-            className="px-4 py-2 rounded-lg bg-[#853953] text-white text-xs font-semibold"
+            className="px-5 py-2.5 rounded-xl bg-gradient-brand text-[#0B0F14] text-xs font-extrabold shadow-glow-yellow"
           >
             Reset Filters
           </button>

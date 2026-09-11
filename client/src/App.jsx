@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
 import StarfieldBackground from './components/StarfieldBackground';
 
 import HomePage from './pages/HomePage';
@@ -16,24 +17,27 @@ import AboutPage from './pages/AboutPage';
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#F3F4F4] text-[#2C2C2C] font-sans antialiased selection:bg-[#853953] selection:text-white relative overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-[#0B0F14] text-[#F3F4F6] font-sans antialiased selection:bg-[#FFF449] selection:text-[#0B0F14] relative overflow-x-hidden">
       
+      {/* Custom Circular Cursor */}
+      <CustomCursor />
+
       {/* Animated Starfield Background Canvas */}
       <StarfieldBackground />
 
-      {/* Portfolio Ambient Soft Color Meshes */}
+      {/* Futuristic Dark Ambient Radial Glowing Meshes */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Top-Left Ambient Brand Blob */}
-        <div className="absolute -top-32 -left-32 w-[34rem] h-[34rem] bg-gradient-to-br from-[#853953]/15 via-[#612D53]/10 to-transparent rounded-full blur-3xl animate-float-slow" />
+        {/* Top-Left Bright Yellow Glow Blob */}
+        <div className="absolute -top-32 -left-32 w-[34rem] h-[34rem] bg-gradient-to-br from-[#FFF449]/12 via-[#B2D959]/08 to-transparent rounded-full blur-3xl animate-float-slow" />
         
-        {/* Top-Right Soft Mulberry Blob */}
-        <div className="absolute top-1/4 -right-24 w-[32rem] h-[32rem] bg-gradient-to-bl from-[#612D53]/15 via-[#853953]/10 to-transparent rounded-full blur-3xl animate-float-reverse" />
+        {/* Top-Right Lime Green Glow Blob */}
+        <div className="absolute top-1/4 -right-24 w-[32rem] h-[32rem] bg-gradient-to-bl from-[#7EC151]/12 via-[#B2D959]/08 to-transparent rounded-full blur-3xl animate-float-reverse" />
         
         {/* Center Glow Radial Pulse */}
-        <div className="absolute top-1/2 left-1/3 -translate-x-1/2 w-[38rem] h-[38rem] bg-gradient-to-tr from-[#853953]/10 via-[#612D53]/08 to-transparent rounded-full blur-3xl animate-pulse-glow" />
+        <div className="absolute top-1/2 left-1/3 -translate-x-1/2 w-[38rem] h-[38rem] bg-gradient-to-tr from-[#FFF449]/08 via-[#7EC151]/06 to-transparent rounded-full blur-3xl animate-pulse-glow" />
 
-        {/* Bottom Ambient Glow */}
-        <div className="absolute -bottom-40 right-1/4 w-[30rem] h-[30rem] bg-gradient-to-tl from-[#612D53]/12 to-[#853953]/12 rounded-full blur-3xl animate-float-slow" />
+        {/* Bottom Ambient Fresh Green Glow */}
+        <div className="absolute -bottom-40 right-1/4 w-[30rem] h-[30rem] bg-gradient-to-tl from-[#7EC151]/12 to-[#FFF449]/08 rounded-full blur-3xl animate-float-slow" />
       </div>
 
       {/* Foreground Content */}

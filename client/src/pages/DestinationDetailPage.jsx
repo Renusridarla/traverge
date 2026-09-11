@@ -44,7 +44,7 @@ export default function DestinationDetailPage() {
 
   if (loading) {
     return (
-      <div className="max-w-7xl mx-auto px-4 py-20 text-center text-slate-500 font-semibold animate-pulse">
+      <div className="max-w-7xl mx-auto px-4 py-20 text-center text-gray-400 font-semibold">
         Loading destination guide...
       </div>
     );
@@ -53,8 +53,8 @@ export default function DestinationDetailPage() {
   if (error || !destination) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center space-y-4">
-        <p className="text-xl font-bold text-red-500">{error || 'Destination not found'}</p>
-        <Link to="/destinations" className="px-5 py-2.5 rounded-xl bg-brand-orange text-white text-xs font-bold inline-block">
+        <p className="text-xl font-bold text-red-400">{error || 'Destination not found'}</p>
+        <Link to="/destinations" className="px-5 py-2.5 rounded-xl bg-gradient-brand text-[#0B0F14] text-xs font-extrabold inline-block shadow-glow-yellow">
           Back to Destinations
         </Link>
       </div>
@@ -77,57 +77,57 @@ export default function DestinationDetailPage() {
       {/* Back button */}
       <button
         onClick={() => navigate(-1)}
-        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white text-slate-700 font-bold text-xs shadow-xs border border-orange-100 hover:text-brand-orange transition-colors"
+        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#131920] text-gray-200 font-bold text-xs shadow-card-dark border border-[#232E3C] hover:text-[#FFF449] transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         Back
       </button>
 
       {/* Hero Cover */}
-      <div className="relative rounded-3xl overflow-hidden shadow-glow border-4 border-white bg-slate-900 text-white min-h-[380px] lg:min-h-[460px] flex items-end p-6 sm:p-10 group">
+      <div className="relative rounded-3xl overflow-hidden shadow-card-dark border border-[#232E3C] bg-[#0B0F14] text-white min-h-[380px] lg:min-h-[460px] flex items-end p-6 sm:p-10 group">
         <img
           src={destination.image}
           alt={destination.name}
-          className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-700"
+          className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F14] via-[#0B0F14]/60 to-transparent" />
 
         <div className="relative z-10 space-y-4 max-w-3xl">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="px-3.5 py-1 rounded-full bg-white/90 text-slate-900 font-bold text-xs uppercase tracking-wider backdrop-blur-md flex items-center gap-1.5">
-              <span>{destination.flagEmoji || '🇮🇳'}</span>
+            <span className="px-3.5 py-1 rounded-full bg-[#0B0F14]/85 text-white font-extrabold text-xs uppercase tracking-wider border border-[#232E3C] flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-[#B2D959]" />
               <span>{destination.type === 'international' ? destination.country : (destination.state || destination.country)}</span>
             </span>
-            <span className="px-3.5 py-1 rounded-full bg-brand-orange text-white font-extrabold text-xs">
+            <span className="px-3.5 py-1 rounded-full bg-[#1A222C] text-[#FFF449] font-extrabold text-xs border border-[#232E3C]">
               {destination.category}
             </span>
-            <span className="px-3 py-1 rounded-full bg-amber-400/90 text-slate-950 font-bold text-xs flex items-center gap-1">
-              <Star className="w-3.5 h-3.5 fill-slate-950 text-slate-950" />
+            <span className="px-3 py-1 rounded-full bg-[#0B0F14]/85 text-[#FFF449] border border-[#232E3C] font-extrabold text-xs flex items-center gap-1">
+              <Star className="w-3.5 h-3.5 fill-[#FFF449] text-[#FFF449]" />
               {destination.rating || 4.8}
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight leading-tight">
             {destination.name}
           </h1>
 
-          <p className="text-sm sm:text-base font-medium text-slate-200 leading-relaxed">
+          <p className="text-sm sm:text-base font-normal text-gray-300 leading-relaxed">
             {destination.description}
           </p>
 
           {/* Key Quick Stats */}
-          <div className="flex flex-wrap items-center gap-6 pt-4 border-t border-white/20 text-xs">
+          <div className="flex flex-wrap items-center gap-6 pt-4 border-t border-[#232E3C] text-xs">
             <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-brand-golden" />
-              <span>Recommended: <strong>{destination.recommendedDays || 3} Days</strong></span>
+              <Calendar className="w-4 h-4 text-[#B2D959]" />
+              <span>Recommended: <strong className="text-white">{destination.recommendedDays || 3} Days</strong></span>
             </div>
             <div className="flex items-center gap-2">
-              <Sun className="w-4 h-4 text-amber-400" />
-              <span>Best Time: <strong>{destination.bestTime || 'Oct - Mar'}</strong></span>
+              <Sun className="w-4 h-4 text-[#FFF449]" />
+              <span>Best Time: <strong className="text-white">{destination.bestTime || 'Oct - Mar'}</strong></span>
             </div>
             <div className="flex items-center gap-2">
-              <IndianRupee className="w-4 h-4 text-emerald-400" />
-              <span>Est. Budget: <strong>₹{Number(destination.estimatedBudgetINR).toLocaleString('en-IN')} / person</strong></span>
+              <IndianRupee className="w-4 h-4 text-[#7EC151]" />
+              <span>Est. Budget: <strong className="text-white">₹{Number(destination.estimatedBudgetINR).toLocaleString('en-IN')} / person</strong></span>
             </div>
           </div>
         </div>
@@ -136,7 +136,7 @@ export default function DestinationDetailPage() {
         <div className="absolute top-6 right-6 hidden md:block">
           <button
             onClick={handleCreateItinerary}
-            className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-brand-orange via-amber-500 to-brand-golden text-white font-extrabold text-sm shadow-glow hover:scale-105 transition-all flex items-center gap-2"
+            className="px-6 py-3.5 rounded-xl bg-gradient-brand hover:bg-gradient-brand-hover text-[#0B0F14] font-black text-sm shadow-glow-yellow hover:scale-105 transition-all flex items-center gap-2"
           >
             <Sparkles className="w-4 h-4" />
             Create My Itinerary
@@ -152,24 +152,24 @@ export default function DestinationDetailPage() {
           
           {/* Top Attractions */}
           {destination.attractions && destination.attractions.length > 0 && (
-            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-orange-100 space-y-4">
-              <div className="flex items-center gap-2">
-                <Compass className="w-5 h-5 text-brand-orange" />
-                <h2 className="text-xl font-extrabold text-slate-900">Popular Attractions</h2>
+            <div className="interactive-card bg-[#131920] rounded-3xl p-6 sm:p-8 shadow-card-dark border border-[#232E3C] space-y-4">
+              <div className="flex items-center gap-2.5">
+                <Compass className="w-5 h-5 text-[#FFF449]" />
+                <h2 className="text-xl font-bold text-white">Popular Attractions</h2>
               </div>
 
               <div className="grid grid-cols-1 gap-4">
                 {destination.attractions.map((attr, idx) => (
-                  <div key={idx} className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start justify-between gap-4">
+                  <div key={idx} className="p-4 rounded-xl bg-[#0B0F14] border border-[#232E3C] flex items-start justify-between gap-4">
                     <div>
-                      <h3 className="text-sm font-extrabold text-slate-900">{attr.name}</h3>
-                      <p className="text-xs text-slate-500 font-medium mt-0.5">{attr.category || 'Sightseeing spot'}</p>
+                      <h3 className="text-sm font-bold text-white">{attr.name}</h3>
+                      <p className="text-xs text-gray-400 font-normal mt-0.5">{attr.category || 'Sightseeing spot'}</p>
                     </div>
                     <div className="text-right shrink-0">
-                      <span className="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-lg block">
+                      <span className="text-xs font-bold text-[#B2D959] bg-[#1A222C] border border-[#232E3C] px-2.5 py-1 rounded-lg block">
                         ₹{attr.estimatedCost || 200}
                       </span>
-                      <span className="text-[10px] text-slate-400 font-semibold mt-1 block">{attr.weatherSuitability || 'All Weather'}</span>
+                      <span className="text-[10px] text-gray-400 font-semibold mt-1 block">{attr.weatherSuitability || 'All Weather'}</span>
                     </div>
                   </div>
                 ))}
@@ -179,16 +179,16 @@ export default function DestinationDetailPage() {
 
           {/* Activities List */}
           {destination.activities && destination.activities.length > 0 && (
-            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-orange-100 space-y-4">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-amber-500" />
-                <h2 className="text-xl font-extrabold text-slate-900">Top Things To Do & Activities</h2>
+            <div className="interactive-card bg-[#131920] rounded-3xl p-6 sm:p-8 shadow-card-dark border border-[#232E3C] space-y-4">
+              <div className="flex items-center gap-2.5">
+                <Sparkles className="w-5 h-5 text-[#B2D959]" />
+                <h2 className="text-xl font-bold text-white">Top Things To Do & Activities</h2>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {destination.activities.map((act, idx) => (
-                  <div key={idx} className="flex items-center gap-2.5 p-3 rounded-2xl bg-orange-50/60 border border-orange-100 text-xs font-bold text-slate-800">
-                    <CheckCircle className="w-4 h-4 text-brand-orange shrink-0" />
+                  <div key={idx} className="flex items-center gap-2.5 p-3.5 rounded-xl bg-[#0B0F14] border border-[#232E3C] text-xs font-bold text-gray-200">
+                    <CheckCircle className="w-4 h-4 text-[#7EC151] shrink-0" />
                     <span>{act}</span>
                   </div>
                 ))}
@@ -197,16 +197,16 @@ export default function DestinationDetailPage() {
           )}
 
           {/* Local Food & Travel Tips */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-orange-100 space-y-4">
-            <div className="flex items-center gap-2">
-              <Utensils className="w-5 h-5 text-rose-500" />
-              <h2 className="text-xl font-extrabold text-slate-900">Local Cuisine & Travel Tips</h2>
+          <div className="interactive-card bg-[#131920] rounded-3xl p-6 sm:p-8 shadow-card-dark border border-[#232E3C] space-y-4">
+            <div className="flex items-center gap-2.5">
+              <Utensils className="w-5 h-5 text-[#FFF449]" />
+              <h2 className="text-xl font-bold text-white">Local Cuisine & Travel Tips</h2>
             </div>
             
-            <div className="space-y-3 text-xs text-slate-600 font-medium leading-relaxed">
-              <p>• <strong>Food Highlights:</strong> Sample regional authentic specialties at local heritage eateries and vibrant night bazaars.</p>
-              <p>• <strong>Getting Around:</strong> Local cabs, auto rickshaws, or rental two-wheelers are widely available throughout the main tourist belt.</p>
-              <p>• <strong>Traveler Tip:</strong> Book popular attraction permits and high-demand stays 2-3 weeks in advance during peak season ({destination.bestTime || 'Oct - Mar'}).</p>
+            <div className="space-y-3 text-xs text-gray-300 font-normal leading-relaxed">
+              <p>• <strong className="text-white">Food Highlights:</strong> Sample regional authentic specialties at local heritage eateries and vibrant night bazaars.</p>
+              <p>• <strong className="text-white">Getting Around:</strong> Local cabs, auto rickshaws, or rental two-wheelers are widely available throughout the main tourist belt.</p>
+              <p>• <strong className="text-white">Traveler Tip:</strong> Book popular attraction permits and high-demand stays 2-3 weeks in advance during peak season ({destination.bestTime || 'Oct - Mar'}).</p>
             </div>
           </div>
 
@@ -219,14 +219,14 @@ export default function DestinationDetailPage() {
           <WeatherWidget initialCity={destination.name} />
 
           {/* Sticky CTA Card */}
-          <div className="bg-gradient-to-r from-brand-orange via-amber-500 to-brand-golden p-6 rounded-3xl text-white shadow-glow space-y-3 text-center">
-            <h3 className="text-lg font-extrabold">Ready to explore {destination.name}?</h3>
-            <p className="text-xs text-yellow-100 font-medium">Generate a dynamic day-wise itinerary with visual budget breakdown instantly.</p>
+          <div className="bg-[#131920] p-6 rounded-3xl text-white shadow-card-dark border border-[#232E3C] space-y-3 text-center">
+            <h3 className="text-lg font-bold">Ready to explore {destination.name}?</h3>
+            <p className="text-xs text-gray-400 font-normal">Generate a dynamic day-wise itinerary with visual budget breakdown instantly.</p>
             <button
               onClick={handleCreateItinerary}
-              className="w-full py-3.5 rounded-2xl bg-white text-slate-900 font-extrabold text-xs shadow-md hover:bg-yellow-50 transition-all flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-xl bg-gradient-brand hover:bg-gradient-brand-hover text-[#0B0F14] font-black text-xs shadow-glow-yellow hover:scale-105 transition-all flex items-center justify-center gap-2"
             >
-              <Sparkles className="w-4 h-4 text-brand-orange" />
+              <Sparkles className="w-4 h-4" />
               Create My Custom Itinerary
             </button>
           </div>
@@ -236,10 +236,10 @@ export default function DestinationDetailPage() {
       </div>
 
       {/* Recommended Hotels for this Destination */}
-      <div className="space-y-6 pt-6 border-t border-orange-100">
-        <h2 className="text-2xl font-extrabold text-slate-900">Recommended Hotels in {destination.name}</h2>
+      <div className="space-y-6 pt-6 border-t border-[#232E3C]">
+        <h2 className="text-2xl font-black text-white">Recommended Hotels in {destination.name}</h2>
         {hotels.length === 0 ? (
-          <p className="text-xs text-slate-500 font-semibold">No specific hotel records listed for {destination.name} yet. Check out our main Hotels page!</p>
+          <p className="text-xs text-gray-400 font-semibold">No specific hotel records listed for {destination.name} yet. Check out our main Hotels page!</p>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {hotels.map((hotel) => (

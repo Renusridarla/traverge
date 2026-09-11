@@ -17,30 +17,30 @@ export default function HowItWorks() {
     },
     {
       step: '03',
-      title: 'Check Weather & Hotels',
+      title: 'Check Weather & Stays',
       desc: 'Get live weather insights & curated hotel options tailored to your stay.',
       icon: Sun
     },
     {
       step: '04',
-      title: 'Get Personalized Itinerary',
+      title: 'Personalized Schedule',
       desc: 'Receive a full day-wise schedule with cost breakdown visualizer.',
       icon: Sparkles
     }
   ];
 
   return (
-    <section className="py-20 relative">
+    <section className="py-20 relative bg-[#0B0F14] border-b border-[#232E3C]/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-xl border border-orange-200/80 shadow-md text-brand-orange text-xs font-black uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#131920] border border-[#232E3C] shadow-card-dark text-[#FFF449] text-xs font-extrabold uppercase tracking-wider">
             <span>Simple 4-Step Process</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
             How Traverge Works
           </h2>
-          <p className="text-sm sm:text-base font-semibold text-slate-600">
+          <p className="text-sm sm:text-base font-normal text-gray-400">
             From destination discovery to a complete day-wise plan in under 60 seconds.
           </p>
         </div>
@@ -50,25 +50,25 @@ export default function HowItWorks() {
           {steps.map((s, idx) => (
             <div
               key={idx}
-              className="bg-white/85 backdrop-blur-2xl rounded-3xl p-6 shadow-lg shadow-orange-500/5 border border-white/90 hover:border-brand-orange/60 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative flex flex-col justify-between space-y-4 group"
+              className="interactive-card bg-[#131920] rounded-2xl p-6 shadow-card-dark border border-[#232E3C] hover:border-[#B2D959]/50 hover:shadow-glow-yellow transition-all duration-300 relative flex flex-col justify-between space-y-6 group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-4xl font-black bg-gradient-to-r from-brand-orange to-amber-500 bg-clip-text text-transparent opacity-80">
+                  <span className="text-4xl font-black text-gradient-brand">
                     {s.step}
                   </span>
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-orange to-amber-500 text-white flex items-center justify-center font-bold shadow-md group-hover:rotate-12 transition-transform">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-brand text-[#0B0F14] flex items-center justify-center font-bold shadow-glow-yellow group-hover:rotate-12 transition-transform">
                     <s.icon className="w-6 h-6" />
                   </div>
                 </div>
 
-                <h3 className="text-lg font-black text-slate-900 mb-1.5 group-hover:text-brand-orange transition-colors">{s.title}</h3>
-                <p className="text-xs text-slate-600 font-semibold leading-relaxed">{s.desc}</p>
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#FFF449] transition-colors">{s.title}</h3>
+                <p className="text-xs text-gray-400 font-normal leading-relaxed">{s.desc}</p>
               </div>
 
               {idx < steps.length - 1 && (
-                <div className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 z-10 text-brand-orange/60">
-                  <ArrowRight className="w-6 h-6" />
+                <div className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 z-10 text-[#B2D959]">
+                  <ArrowRight className="w-5 h-5" />
                 </div>
               )}
             </div>

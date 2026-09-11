@@ -19,51 +19,46 @@ export default function StarfieldBackground() {
 
     window.addEventListener('resize', handleResize);
 
-    // Create stars
-    const starCount = Math.floor((width * height) / 4000);
-    const stars = Array.from({ length: Math.min(250, Math.max(80, starCount)) }, () => ({
+    const starCount = Math.floor((width * height) / 4500);
+    const stars = Array.from({ length: Math.min(220, Math.max(70, starCount)) }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      size: Math.random() * 1.6 + 0.4,
-      alpha: Math.random() * 0.7 + 0.2,
-      twinkleSpeed: Math.random() * 0.02 + 0.005,
+      size: Math.random() * 1.5 + 0.3,
+      alpha: Math.random() * 0.6 + 0.2,
+      twinkleSpeed: Math.random() * 0.015 + 0.005,
       twinkleDirection: Math.random() > 0.5 ? 1 : -1,
-      speedY: Math.random() * 0.15 + 0.05
+      speedY: Math.random() * 0.12 + 0.03,
+      color: Math.random() > 0.4 ? 'rgba(255, 244, 73,' : 'rgba(126, 193, 81,'
     }));
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
       stars.forEach((star) => {
-        // Update alpha twinkle
         star.alpha += star.twinkleSpeed * star.twinkleDirection;
-        if (star.alpha >= 0.85) {
-          star.alpha = 0.85;
+        if (star.alpha >= 0.8) {
+          star.alpha = 0.8;
           star.twinkleDirection = -1;
         } else if (star.alpha <= 0.15) {
           star.alpha = 0.15;
           star.twinkleDirection = 1;
         }
 
-        // Slow upward float
         star.y -= star.speedY;
         if (star.y < 0) {
           star.y = height;
           star.x = Math.random() * width;
         }
 
-        // Draw star
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        // Use brand accent (#853953 / #E2B4BD) and crisp white for star glow
-        ctx.fillStyle = `rgba(133, 57, 83, ${star.alpha})`;
+        ctx.fillStyle = `${star.color}${star.alpha})`;
         ctx.fill();
 
-        // Subtle glow for larger stars
         if (star.size > 1.2) {
           ctx.beginPath();
-          ctx.arc(star.x, star.y, star.size * 2.5, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(226, 180, 189, ${star.alpha * 0.25})`;
+          ctx.arc(star.x, star.y, star.size * 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = `${star.color}${star.alpha * 0.2})`;
           ctx.fill();
         }
       });

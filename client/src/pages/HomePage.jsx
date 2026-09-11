@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import HeroSection from '../components/HeroSection';
 import TripPlanner from '../components/TripPlanner';
+import HowItWorks from '../components/HowItWorks';
+import WhyTraverge from '../components/WhyTraverge';
 import SmartPlanningFeatures from '../components/SmartPlanningFeatures';
 import DestinationCard from '../components/DestinationCard';
 import HotelCard from '../components/HotelCard';
@@ -144,23 +146,26 @@ export default function HomePage() {
         <TripPlanner />
       </section>
 
-      {/* 3. Popular Destinations Section */}
+      {/* 3. How It Works Section */}
+      <HowItWorks />
+
+      {/* 4. Popular Destinations Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <span className="text-xs font-bold text-[#853953] uppercase tracking-wider block">
+            <span className="text-xs font-extrabold text-[#FFF449] uppercase tracking-wider block">
               Featured Locations
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#2C2C2C]">Popular Destinations</h2>
-            <p className="text-sm font-normal text-[#2C2C2C]/75">Discover top domestic and international travel spots.</p>
+            <h2 className="text-2xl sm:text-3xl font-black text-white">Popular Destinations</h2>
+            <p className="text-sm font-normal text-gray-400">Discover top domestic and international travel spots.</p>
           </div>
 
           <Link
             to="/destinations"
-            className="px-4 py-2 rounded-lg bg-white text-[#853953] border border-gray-300 hover:border-[#853953] font-semibold text-xs transition-all flex items-center gap-1.5 self-start sm:self-auto"
+            className="px-4 py-2.5 rounded-xl bg-[#131920] text-white border border-[#232E3C] hover:border-[#FFF449] font-bold text-xs transition-all flex items-center gap-1.5 self-start sm:self-auto shadow-card-dark hover:scale-105"
           >
             <span>Explore All Destinations</span>
-            <ArrowUpRight className="w-4 h-4" />
+            <ArrowUpRight className="w-4 h-4 text-[#B2D959]" />
           </Link>
         </div>
 
@@ -171,26 +176,29 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Smart Travel Planning Capabilities */}
+      {/* 5. Why Traverge Section */}
+      <WhyTraverge />
+
+      {/* 6. Smart Travel Planning Capabilities */}
       <SmartPlanningFeatures />
 
-      {/* 5. Popular Hotels Section */}
+      {/* 7. Popular Hotels Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <span className="text-xs font-bold text-[#853953] uppercase tracking-wider block">
+            <span className="text-xs font-extrabold text-[#FFF449] uppercase tracking-wider block">
               Accommodations
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#2C2C2C]">Popular Hotels</h2>
-            <p className="text-sm font-normal text-[#2C2C2C]/75">Curated selection of stays with estimated rates.</p>
+            <h2 className="text-2xl sm:text-3xl font-black text-white">Popular Hotels</h2>
+            <p className="text-sm font-normal text-gray-400">Curated selection of stays with estimated rates.</p>
           </div>
 
           <Link
             to="/hotels"
-            className="px-4 py-2 rounded-lg bg-white text-[#853953] border border-gray-300 hover:border-[#853953] font-semibold text-xs transition-all flex items-center gap-1.5 self-start sm:self-auto"
+            className="px-4 py-2.5 rounded-xl bg-[#131920] text-white border border-[#232E3C] hover:border-[#FFF449] font-bold text-xs transition-all flex items-center gap-1.5 self-start sm:self-auto shadow-card-dark hover:scale-105"
           >
             <span>View All Hotels</span>
-            <ArrowUpRight className="w-4 h-4" />
+            <ArrowUpRight className="w-4 h-4 text-[#B2D959]" />
           </Link>
         </div>
 
@@ -201,20 +209,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. Final CTA Section */}
+      {/* 8. Final CTA Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#2C2C2C] rounded-2xl p-8 lg:p-12 text-white text-center space-y-6 shadow-card">
-          <div className="max-w-xl mx-auto space-y-3">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F3F4F4]">Ready to plan your next trip?</h2>
-            <p className="text-sm font-normal text-[#F3F4F4]/80">
-              Create a personalized day-wise itinerary tailored to your budget and preferences.
+        <div className="interactive-card bg-[#131920] rounded-3xl p-8 lg:p-14 text-white text-center space-y-6 shadow-card-dark border border-[#232E3C] relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#FFF449]/05 via-[#B2D959]/05 to-transparent pointer-events-none" />
+          <div className="max-w-xl mx-auto space-y-4 relative z-10">
+            <h2 className="text-3xl sm:text-4xl font-black text-white">Ready to plan your next trip?</h2>
+            <p className="text-sm font-normal text-gray-400 leading-relaxed">
+              Create a personalized day-wise itinerary tailored to your budget, travel preferences, and weather forecasts.
             </p>
             <div className="pt-2 flex justify-center">
               <Link
                 to="/itinerary"
-                className="px-7 py-3 rounded-lg bg-gradient-to-r from-[#853953] to-[#612D53] text-white font-semibold text-sm shadow-xs hover:opacity-95 transition-all flex items-center gap-2"
+                className="px-8 py-4 rounded-xl bg-gradient-brand hover:bg-gradient-brand-hover text-[#0B0F14] font-black text-sm shadow-glow-yellow hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5"
               >
-                <span>Plan a Trip</span>
+                <span>Plan Your Trip</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

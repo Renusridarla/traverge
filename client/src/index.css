@@ -4,29 +4,39 @@
 
 @layer utilities {
   .bg-gradient-brand {
-    background: linear-gradient(135deg, #853953 0%, #612D53 100%);
+    background: linear-gradient(135deg, #FFF449 0%, #B2D959 50%, #7EC151 100%);
   }
   .bg-gradient-brand-hover {
-    background: linear-gradient(135deg, #612D53 0%, #4A1E3E 100%);
+    background: linear-gradient(135deg, #FED24F 0%, #B2D959 60%, #7EC151 100%);
   }
   .text-gradient-brand {
-    background: linear-gradient(135deg, #853953 0%, #612D53 100%);
+    background: linear-gradient(135deg, #FFF449 0%, #B2D959 50%, #7EC151 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  .border-gradient-brand {
+    border-image: linear-gradient(135deg, #FFF449, #B2D959, #7EC151) 1;
+  }
 }
 
-/* Custom minimal scrollbar */
+/* Hide default cursor on desktop for custom circular cursor */
+@media (pointer: fine) {
+  body, button, a, input, select, textarea {
+    cursor: none !important;
+  }
+}
+
+/* Custom minimal dark scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F3F4F4;
+  background: #0B0F14;
 }
 ::-webkit-scrollbar-thumb {
-  background: #853953;
+  background: linear-gradient(180deg, #FFF449 0%, #7EC151 100%);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #612D53;
+  background: #B2D959;
 }

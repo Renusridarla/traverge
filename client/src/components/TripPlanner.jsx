@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, IndianRupee, Calendar, Users, Sliders, Check } from 'lucide-react';
+import { Search, IndianRupee, Calendar, Users, Sliders, Check, Sparkles } from 'lucide-react';
 
 export default function TripPlanner({ onPlanSubmit }) {
   const navigate = useNavigate();
@@ -66,31 +66,31 @@ export default function TripPlanner({ onPlanSubmit }) {
   };
 
   return (
-    <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-card border border-gray-200/80">
+    <div className="interactive-card bg-[#131920]/90 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-card-dark border border-[#232E3C] hover:border-[#FFF449]/50 transition-all duration-300">
       
-      <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
-        <div className="w-10 h-10 rounded-xl bg-[#853953]/10 text-[#853953] flex items-center justify-center font-bold">
+      <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#232E3C]">
+        <div className="w-10 h-10 rounded-xl bg-gradient-brand text-[#0B0F14] flex items-center justify-center font-black shadow-glow-yellow">
           <Sliders className="w-5 h-5" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-[#2C2C2C]">Trip Planner</h2>
-          <p className="text-xs font-normal text-[#2C2C2C]/70">Enter your preferences to build a custom itinerary</p>
+          <h2 className="text-xl font-bold text-white">Smart Travel Dashboard</h2>
+          <p className="text-xs font-normal text-gray-400">Configure parameters for AI itinerary and budget calculation</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         
-        {/* Trip Type Toggle */}
+        {/* Domestic / International Toggle */}
         <div className="flex items-center gap-3">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#2C2C2C]">Trip Type:</span>
-          <div className="inline-flex bg-[#F3F4F4] p-1 rounded-lg border border-gray-200">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#B2D959]">Type:</span>
+          <div className="inline-flex bg-[#0B0F14] p-1 rounded-lg border border-[#232E3C]">
             <button
               type="button"
               onClick={() => { setTripType('domestic'); setDestination('Manali'); }}
-              className={`px-4 py-1.5 rounded-md text-xs font-semibold transition-all ${
+              className={`px-4 py-1.5 rounded-md text-xs font-bold transition-all ${
                 tripType === 'domestic'
-                  ? 'bg-white text-[#853953] shadow-xs font-bold'
-                  : 'text-[#2C2C2C]/70 hover:text-[#2C2C2C]'
+                  ? 'bg-gradient-brand text-[#0B0F14] shadow-xs'
+                  : 'text-gray-400 hover:text-white'
               }`}
             >
               Domestic (India)
@@ -98,10 +98,10 @@ export default function TripPlanner({ onPlanSubmit }) {
             <button
               type="button"
               onClick={() => { setTripType('international'); setDestination('Maldives'); }}
-              className={`px-4 py-1.5 rounded-md text-xs font-semibold transition-all ${
+              className={`px-4 py-1.5 rounded-md text-xs font-bold transition-all ${
                 tripType === 'international'
-                  ? 'bg-white text-[#853953] shadow-xs font-bold'
-                  : 'text-[#2C2C2C]/70 hover:text-[#2C2C2C]'
+                  ? 'bg-gradient-brand text-[#0B0F14] shadow-xs'
+                  : 'text-gray-400 hover:text-white'
               }`}
             >
               International
@@ -113,14 +113,14 @@ export default function TripPlanner({ onPlanSubmit }) {
           
           {/* Destination */}
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-[#2C2C2C] flex items-center gap-1.5">
-              <Search className="w-3.5 h-3.5 text-[#853953]" />
+            <label className="text-xs font-bold text-gray-300 flex items-center gap-1.5">
+              <Search className="w-3.5 h-3.5 text-[#FFF449]" />
               Destination
             </label>
             <select
               value={destination}
               onChange={(e) => setDestination(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-lg bg-[#F3F4F4] border border-gray-300 text-[#2C2C2C] font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-[#853953] focus:bg-white transition-all cursor-pointer"
+              className="w-full px-3.5 py-2.5 rounded-lg bg-[#0B0F14] border border-[#232E3C] text-white font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-[#FFF449] transition-all cursor-pointer"
             >
               {tripType === 'domestic' ? (
                 <>
@@ -162,14 +162,14 @@ export default function TripPlanner({ onPlanSubmit }) {
 
           {/* Budget */}
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-[#2C2C2C] flex items-center gap-1.5">
-              <IndianRupee className="w-3.5 h-3.5 text-[#853953]" />
+            <label className="text-xs font-bold text-gray-300 flex items-center gap-1.5">
+              <IndianRupee className="w-3.5 h-3.5 text-[#B2D959]" />
               Budget (INR)
             </label>
             <select
               value={budget}
               onChange={(e) => setBudget(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-lg bg-[#F3F4F4] border border-gray-300 text-[#2C2C2C] font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-[#853953] focus:bg-white transition-all cursor-pointer"
+              className="w-full px-3.5 py-2.5 rounded-lg bg-[#0B0F14] border border-[#232E3C] text-white font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-[#FFF449] transition-all cursor-pointer"
             >
               {budgetOptions.map((b) => (
                 <option key={b.value} value={b.value}>
@@ -179,55 +179,55 @@ export default function TripPlanner({ onPlanSubmit }) {
             </select>
           </div>
 
-          {/* Travel Dates */}
+          {/* Dates */}
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-[#2C2C2C] flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-[#853953]" />
-              Travel Dates ({calculateDuration(startDate, endDate)} Days)
+            <label className="text-xs font-bold text-gray-300 flex items-center gap-1.5">
+              <Calendar className="w-3.5 h-3.5 text-[#7EC151]" />
+              Dates ({calculateDuration(startDate, endDate)} Days)
             </label>
             <div className="grid grid-cols-2 gap-2">
               <input
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full px-2.5 py-2 rounded-lg bg-[#F3F4F4] border border-gray-300 text-[#2C2C2C] font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-[#853953]"
+                className="w-full px-2 py-2 rounded-lg bg-[#0B0F14] border border-[#232E3C] text-white font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-[#FFF449]"
               />
               <input
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full px-2.5 py-2 rounded-lg bg-[#F3F4F4] border border-gray-300 text-[#2C2C2C] font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-[#853953]"
+                className="w-full px-2 py-2 rounded-lg bg-[#0B0F14] border border-[#232E3C] text-white font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-[#FFF449]"
               />
             </div>
           </div>
 
           {/* Travelers */}
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-[#2C2C2C] flex items-center gap-1.5">
-              <Users className="w-3.5 h-3.5 text-[#853953]" />
+            <label className="text-xs font-bold text-gray-300 flex items-center gap-1.5">
+              <Users className="w-3.5 h-3.5 text-[#FFF449]" />
               Travelers
             </label>
-            <div className="flex items-center gap-3 bg-[#F3F4F4] p-2 rounded-lg border border-gray-300 justify-between">
+            <div className="flex items-center gap-3 bg-[#0B0F14] p-2 rounded-lg border border-[#232E3C] justify-between">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-[#2C2C2C]">Adults:</span>
+                <span className="text-xs font-semibold text-gray-300">Adults:</span>
                 <input
                   type="number"
                   min="1"
                   max="10"
                   value={adults}
                   onChange={(e) => setAdults(parseInt(e.target.value) || 1)}
-                  className="w-12 text-center py-1 rounded bg-white border border-gray-300 font-semibold text-xs"
+                  className="w-12 text-center py-1 rounded bg-[#131920] border border-[#232E3C] text-white font-bold text-xs"
                 />
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-[#2C2C2C]">Children:</span>
+                <span className="text-xs font-semibold text-gray-300">Kids:</span>
                 <input
                   type="number"
                   min="0"
                   max="10"
                   value={children}
                   onChange={(e) => setChildren(parseInt(e.target.value) || 0)}
-                  className="w-12 text-center py-1 rounded bg-white border border-gray-300 font-semibold text-xs"
+                  className="w-12 text-center py-1 rounded bg-[#131920] border border-[#232E3C] text-white font-bold text-xs"
                 />
               </div>
             </div>
@@ -237,7 +237,7 @@ export default function TripPlanner({ onPlanSubmit }) {
 
         {/* Preferences */}
         <div className="space-y-2 pt-2">
-          <label className="text-xs font-bold text-[#2C2C2C] block">
+          <label className="text-xs font-bold text-gray-300 block">
             Travel Preferences:
           </label>
           <div className="flex flex-wrap gap-2">
@@ -248,26 +248,27 @@ export default function TripPlanner({ onPlanSubmit }) {
                   type="button"
                   key={pref}
                   onClick={() => toggleStyle(pref)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                     selected
-                      ? 'bg-[#853953] text-white shadow-xs'
-                      : 'bg-[#F3F4F4] text-[#2C2C2C] hover:bg-gray-200 border border-gray-300/60'
+                      ? 'bg-gradient-brand text-[#0B0F14] shadow-glow-yellow scale-[1.03]'
+                      : 'bg-[#0B0F14] text-gray-300 hover:bg-[#1A222C] border border-[#232E3C]'
                   }`}
                 >
                   <span>{pref}</span>
-                  {selected && <Check className="w-3.5 h-3.5 stroke-[2.5]" />}
+                  {selected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Submit CTA */}
+        {/* Generate Trip Plan CTA */}
         <div className="pt-2 flex justify-end">
           <button
             type="submit"
-            className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-gradient-to-r from-[#853953] to-[#612D53] text-white font-semibold text-sm shadow-xs hover:opacity-95 transition-all"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-brand hover:bg-gradient-brand-hover text-[#0B0F14] font-black text-sm shadow-glow-yellow hover:scale-105 transition-all flex items-center justify-center gap-2"
           >
+            <Sparkles className="w-4 h-4" />
             Generate Trip Plan
           </button>
         </div>

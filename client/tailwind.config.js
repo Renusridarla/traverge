@@ -8,22 +8,25 @@ export default {
     extend: {
       colors: {
         brand: {
-          dark: '#2C2C2C',       // Primary dark / text / dark sections
-          primary: '#853953',    // Primary brand accent
-          secondary: '#612D53',  // Secondary brand accent
-          bg: '#F3F4F4',         // Main light background
-          muted: '#666666',      // Muted text
-          border: '#E2E8F0',     // Subtle border
-          card: '#FFFFFF'        // Card background
+          warmYellow: '#FED24F',
+          brightYellow: '#FFF449',
+          limeGreen: '#B2D959',
+          freshGreen: '#7EC151',
+          darkBg: '#0B0F14',       // Near-black main background
+          darkCard: '#131920',     // Dark card surface
+          darkSurface: '#1A222C',  // Dark elevated surface
+          darkBorder: '#232E3C',   // Subtle border
+          text: '#F3F4F6',         // White/off-white text
+          muted: '#9CA3AF'         // Muted gray text
         }
       },
       fontFamily: {
         sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif']
       },
       boxShadow: {
-        'subtle': '0 4px 20px -2px rgba(44, 44, 44, 0.05)',
-        'card': '0 10px 30px -5px rgba(44, 44, 44, 0.08)',
-        'glow': '0 8px 25px -4px rgba(133, 57, 83, 0.3)'
+        'glow-yellow': '0 0 25px -4px rgba(255, 244, 73, 0.35)',
+        'glow-green': '0 0 25px -4px rgba(126, 193, 81, 0.35)',
+        'card-dark': '0 10px 30px -5px rgba(0, 0, 0, 0.5)'
       }
     },
   },

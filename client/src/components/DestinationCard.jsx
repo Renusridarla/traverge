@@ -17,27 +17,28 @@ export default function DestinationCard({ destination }) {
   } = destination;
 
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-xs hover:shadow-card border border-gray-200/80 transition-all duration-200 group flex flex-col h-full">
+    <div className="interactive-card bg-[#131920] rounded-2xl overflow-hidden shadow-card-dark border border-[#232E3C] hover:border-[#B2D959]/50 hover:shadow-glow-yellow transition-all duration-300 group flex flex-col h-full">
       
-      {/* Image */}
-      <div className="relative h-48 overflow-hidden bg-gray-100">
+      {/* Image Container */}
+      <div className="relative h-48 overflow-hidden bg-[#0B0F14]">
         <img
           src={image}
           alt={name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90 group-hover:opacity-100"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#131920] via-transparent to-black/30" />
         
         {/* Type / Location Badge */}
-        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-md shadow-2xs flex items-center gap-1 border border-gray-100">
-          <MapPin className="w-3 h-3 text-[#853953]" />
-          <span className="text-[11px] font-semibold text-[#2C2C2C]">
+        <div className="absolute top-3 left-3 bg-[#0B0F14]/85 backdrop-blur-md px-3 py-1 rounded-lg border border-[#232E3C] flex items-center gap-1.5 shadow-md">
+          <MapPin className="w-3 h-3 text-[#B2D959]" />
+          <span className="text-[11px] font-bold text-white tracking-wide">
             {type === 'international' ? country : (state || country)}
           </span>
         </div>
 
         {/* Rating */}
-        <div className="absolute top-3 right-3 bg-[#2C2C2C]/80 text-white px-2 py-0.5 rounded-md text-[11px] font-semibold flex items-center gap-1">
-          <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+        <div className="absolute top-3 right-3 bg-[#0B0F14]/85 backdrop-blur-md text-[#FFF449] border border-[#232E3C] px-2.5 py-1 rounded-lg text-[11px] font-extrabold flex items-center gap-1 shadow-md">
+          <Star className="w-3 h-3 fill-[#FFF449] text-[#FFF449]" />
           <span>{rating}</span>
         </div>
       </div>
@@ -45,40 +46,40 @@ export default function DestinationCard({ destination }) {
       {/* Body */}
       <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
         <div>
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg font-bold text-[#2C2C2C] group-hover:text-[#853953] transition-colors">
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="text-lg font-bold text-white group-hover:text-[#FFF449] transition-colors">
               {name}
             </h3>
-            <span className="text-[10px] font-semibold bg-[#F3F4F4] text-[#853953] px-2 py-0.5 rounded">
+            <span className="text-[10px] font-bold bg-[#1A222C] text-[#B2D959] border border-[#232E3C] px-2.5 py-0.5 rounded-full uppercase tracking-wider shrink-0">
               {category}
             </span>
           </div>
 
-          <p className="text-xs text-[#2C2C2C]/75 font-normal line-clamp-2 mt-1.5 leading-relaxed">
+          <p className="text-xs text-gray-400 font-normal line-clamp-2 mt-2 leading-relaxed">
             {shortDescription || 'Discover iconic sights, local food, and day-wise travel itineraries.'}
           </p>
         </div>
 
         {/* Details Footer */}
-        <div className="pt-3 border-t border-gray-100 space-y-3">
-          <div className="flex items-center justify-between text-xs text-[#2C2C2C]/80 font-medium">
-            <span className="flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5 text-[#853953]" />
+        <div className="pt-4 border-t border-[#232E3C] space-y-3">
+          <div className="flex items-center justify-between text-xs text-gray-300 font-medium">
+            <span className="flex items-center gap-1.5 text-gray-300">
+              <Calendar className="w-3.5 h-3.5 text-[#7EC151]" />
               {recommendedDays || 3} Days Trip
             </span>
-            <span className="flex items-center font-bold text-[#2C2C2C]">
-              <IndianRupee className="w-3.5 h-3.5 text-[#853953] inline" />
+            <span className="flex items-center font-extrabold text-white">
+              <IndianRupee className="w-3.5 h-3.5 text-[#FFF449] inline" />
               {Number(estimatedBudgetINR).toLocaleString('en-IN')}
-              <span className="text-[10px] font-normal text-[#2C2C2C]/60 ml-0.5">/ person</span>
+              <span className="text-[10px] font-normal text-gray-400 ml-0.5">/ person</span>
             </span>
           </div>
 
           <Link
             to={`/destinations/${encodeURIComponent(name)}`}
-            className="w-full py-2 rounded-lg bg-[#F3F4F4] hover:bg-gradient-to-r hover:from-[#853953] hover:to-[#612D53] text-[#853953] hover:text-white font-semibold text-xs transition-all flex items-center justify-center gap-1 group/btn border border-gray-200"
+            className="w-full py-2.5 rounded-xl bg-[#1A222C] hover:bg-gradient-brand text-gray-200 hover:text-[#0B0F14] font-bold text-xs transition-all flex items-center justify-center gap-1.5 border border-[#232E3C] hover:border-transparent group/btn shadow-xs"
           >
             <span>View Details</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+            <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
           </Link>
         </div>
 
